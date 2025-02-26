@@ -167,22 +167,24 @@ void pipeline_t::dispatch() {
       //    to determine whether or not the register is ready.
 
       // FIX_ME #8 BEGIN
-      if( PAY.buf[index].A_valid == true) 
-         A_ready = REN->is_ready(PAY.buf[index].A_phys_reg);
-      else 
-         A_ready = true;
+           if (PAY.buf[index].A_valid) {
+    A_ready = REN->is_ready(PAY.buf[index].A_phys_reg);
+} else {
+    A_ready = true;
+}
 
-      
-      if( PAY.buf[index].B_valid == true) 
-         B_ready = REN->is_ready(PAY.buf[index].B_phys_reg)
-      else 
-         B_ready = true;
+if (PAY.buf[index].B_valid) {
+    B_ready = REN->is_ready(PAY.buf[index].B_phys_reg);
+} else {
+    B_ready = true;
+}
 
+if (PAY.buf[index].D_valid) {
+    D_ready = REN->is_ready(PAY.buf[index].D_phys_reg);
+} else {
+    D_ready = true;
+}
 
-      if( PAY.buf[index].D_valid == true) 
-         D_ready = REN->is_ready(PAY.buf[index].D_phys_reg)
-      else 
-         D_ready = true;
       // FIX_ME #8 END
 
       // FIX_ME #9
